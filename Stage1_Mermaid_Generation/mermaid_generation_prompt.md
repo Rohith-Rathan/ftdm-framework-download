@@ -184,6 +184,7 @@ I only need these 3 essential questions to provide the best analysis:
 Once requirements are clear, create the following diagrams:
 
 #### **2.1: User Journey Flow**
+**Display this diagram in your response:**
 ```mermaid
 graph TD
     A[Start] --> B[Step 1]
@@ -196,6 +197,7 @@ graph TD
 ```
 
 #### **2.2: System Architecture Flow**
+**Display this diagram in your response:**
 ```mermaid
 graph TD
     A[Frontend] --> B[API Gateway]
@@ -207,6 +209,7 @@ graph TD
 ```
 
 #### **2.3: Business Process Flow**
+**Display this diagram in your response:**
 ```mermaid
 graph TD
     A[Business Event] --> B[Process Step 1]
@@ -218,6 +221,7 @@ graph TD
 ```
 
 #### **2.4: Data Flow Diagram**
+**Display this diagram in your response:**
 ```mermaid
 graph TD
     A[Data Source] --> B[Data Processing]
@@ -228,6 +232,7 @@ graph TD
 ```
 
 #### **2.5: Decision Tree Flow**
+**Display this diagram in your response:**
 ```mermaid
 graph TD
     A[Root Decision] --> B{Condition 1?}
@@ -238,6 +243,7 @@ graph TD
 ```
 
 #### **2.6: Gantt Chart**
+**Display this diagram in your response:**
 ```mermaid
 gantt
     title Project Timeline
@@ -259,13 +265,39 @@ gantt
 ### **Step 3: Visual Preview & File Persistence**
 **CRITICAL**: Show Mermaid diagrams in response AND save as both `.mmd` files AND image files:
 
-1. **Display each diagram** in the response using Mermaid syntax for visual preview
-2. **Save each diagram** as a separate `.mmd` file in the `Stage1_Mermaid_Generation/diagrams/` directory
-3. **Generate image versions** of each diagram for easy verification and sharing
-4. **Save image files** in the `Stage1_Mermaid_Generation/diagrams/images/` directory
-5. **Create the diagrams directory** if it doesn't exist
-6. **Verify file creation** by listing the generated files
-7. **Provide file paths** for each generated diagram
+1. **Display each diagram** in the response using proper Mermaid syntax for visual preview
+2. **Use the enhanced script** to generate both MMD and image files automatically
+3. **Verify file creation** by listing the generated files
+4. **Provide file paths** for each generated diagram
+
+#### **Required Diagram Display Format:**
+For each diagram, use this exact format in your response:
+
+```mermaid
+[DIAGRAM_CONTENT_HERE]
+```
+
+**Example:**
+```mermaid
+graph TD
+    A[User Login] --> B[Authentication]
+    B --> C[Dashboard]
+    C --> D[User Actions]
+```
+
+#### **Required File Generation:**
+Run the complete Stage 1 workflow to generate files:
+```bash
+./scripts/stage1-complete-workflow.sh
+```
+
+This will automatically:
+- Create `Stage1_Mermaid_Generation/diagrams/` directory structure
+- Generate 6 `.mmd` files (user_journey.mmd, system_architecture.mmd, etc.)
+- Generate 6 PNG image files in `diagrams/images/` directory
+- Verify file creation and provide detailed status
+- Generate a comprehensive report
+- Handle both CLI and online image generation methods
 
 ### **Why Both MMD and Image Files?**
 - **MMD files**: For technical users who can read Mermaid syntax
@@ -311,6 +343,36 @@ gantt
 3. **Refine diagrams** based on your feedback
 4. **Update saved files** with refinements
 5. **Iterate until perfect** representation of your vision
+
+#### **Iterative Refinement Process:**
+If user requests changes to requirements or diagrams:
+
+**Option 1: Requirements Changes**
+- User provides updated requirements
+- Run: `./scripts/iterative-mermaid-refinement.sh`
+- System will backup existing files and generate new ones
+
+**Option 2: Specific Diagram Changes**
+- User specifies which diagram needs changes
+- Create custom modifications in `custom_diagrams.json`
+- Run: `./scripts/enhanced-iterative-mermaid-generator.py --custom-diagrams custom_diagrams.json`
+
+**Option 3: Complete Regeneration**
+- User provides completely new requirements
+- System replaces all files with new versions
+- Maintains backup of previous versions
+
+#### **Refinement Commands:**
+```bash
+# For requirement changes
+./scripts/iterative-mermaid-refinement.sh
+
+# For custom diagram modifications
+python3 scripts/enhanced-iterative-mermaid-generator.py --requirements "new requirements" --custom-diagrams custom_diagrams.json
+
+# For complete regeneration
+python3 scripts/enhanced-iterative-mermaid-generator.py --requirements "updated requirements"
+```
 
 ### **Step 5: Final Validation**
 - [ ] Requirements are crystal clear
